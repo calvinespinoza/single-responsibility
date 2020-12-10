@@ -1,4 +1,4 @@
-import { Ticket, Checkout, Invoice } from './srp-after'
+import { Ticket, Checkout } from './srp-after'
 import { TicketOld } from './srp-before'
 
 describe('SRP Before Tests', () => {
@@ -27,7 +27,7 @@ describe('SRP After Tests', () => {
         var ticket = new Ticket("VIP Entrance", 200, ["Free drinks", "VIP Access"]);
         var checkout = new Checkout();
         var invoice = checkout.purchaseTickets(2, "Calvin Espinoza", ticket);
-        expect(invoice.clientName).toEqual("Calvin Espinoza");
-        expect(invoice.cost).toEqual(400);
+        expect(invoice).toContain("Calvin Espinoza");
+        expect(invoice).toContain("400");
     });
 });

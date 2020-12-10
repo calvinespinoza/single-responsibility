@@ -15,22 +15,20 @@ class Ticket {
 }
 
 class Checkout {
-    public purchaseTickets(quantity: number, clientName: string, ticket: Ticket): Invoice {
+    public purchaseTickets(quantity: number, clientName: string, ticket: Ticket): string {
         var cost = quantity * ticket.price;
-        return new Invoice(clientName, cost, new Date());
+        var invoiceService  = new InvoiceService();
+        var invoice = invoiceService.generateInvoice(clientName, cost, new Date());
+        return invoice
     }
 }
 
-class Invoice {
-    public clientName: string;
-    public cost: number;
-    public purchaseDate: Date;
-
-    constructor(clientName: string, cost: number, date: Date) {
-        this.clientName = clientName;
-        this.cost = cost;
-        this.purchaseDate = date;
-    }
+class InvoiceService {
+    public generateInvoice(clientName: string, cost: number, date: Date): string {
+		return `Name: ${clientName}.
+			Cost: ${cost}.
+			Date: ${date}.`;
+	}
 }
 
-export { Ticket, Checkout, Invoice }
+export { Ticket, Checkout }
